@@ -119,7 +119,7 @@ public:
         LaundryOrder order = orderQueue.front();
         orderQueue.pop();
         order.isCompleted = true;
-        int earnedCoins = (rand() % 9 + 2) * 500; // Jumlah koin acak antara 1000 dan 5000 dengan kelipatan 500
+        int earnedCoins = (rand() % 9 + 2) * 500;
         coins += earnedCoins;
         cout << "Pesanan dari " << order.customerName << " sudah selesai. Kamu mendapatkan " << earnedCoins << " coins." << endl;
 
@@ -211,12 +211,12 @@ int main() {
         cout << "\t Kiki's Laundry" << endl;
         game.displayDay();
         cout << "================================" << endl;
-        cout << "1. Accept Order" << endl;
-        cout << "2. View Order Queue" << endl;
-        cout << "3. Complete Order" << endl;
+        cout << "1. Terima Pesanan" << endl;
+        cout << "2. Lihat Antrian " << endl;
+        cout << "3. Selesaikan Pesanan" << endl;
         cout << "4. End Day" << endl;
         cout << "5. Exit" << endl;
-        cout << "Enter your choice: ";
+        cout << "Masukkan pilihan: ";
         cin >> choice;
         cout << endl;
 
