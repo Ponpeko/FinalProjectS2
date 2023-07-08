@@ -139,7 +139,7 @@ public:
         return;
         }
 
-        cout << "Sales Records:" << endl;
+        cout << "Sales Record Day " << day << ": " << endl;
         ifstream inFile("orders.txt");
         if (inFile.is_open()) {
             string line;
@@ -158,6 +158,7 @@ public:
         cout << "2. Next Day" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
+        cout << endl;
 
         switch (choice) {
         case '1':
@@ -187,6 +188,10 @@ private:
         } else {
             cout << "Coin tidak cukup." << endl;
         }
+        
+        salesRecords.clear();
+        remove("orders.txt");
+
         getch();
         system("cls");
     }
@@ -197,8 +202,13 @@ private:
             orderQueue.pop();
             order.isCompleted = true;
         }
-        cout << "Day completed " << day << ". Se" << endl;
-        day++;
+        cout << "Day completed " << day << endl;
+
+        salesRecords.clear();
+        remove("orders.txt");
+
+        getch();
+        system("cls");
     }
 };
 
