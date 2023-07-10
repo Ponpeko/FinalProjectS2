@@ -35,28 +35,28 @@ private:
     int orderIdCounter;
 
 public:
-    LaundryGame() : coins(0), queueSize(10), day(1), orderIdCounter(1) {
+    LaundryGame() : coins(0), queueSize(4), day(1), orderIdCounter(1) {
         srand(time(0));
     }
 
     void acceptOrder() {
-        system("cls");
-
-        string name;
+        string name, serviceType;
         int shirtCount, pantsCount, jacketCount;
 
         cout << "Masukkan nama pelanggan: ";
         cin.ignore();
         getline(cin, name);
 
+        cout << endl;
         cout << "Rincian pesanan" << endl;
-        cout << "Jumlah baju: ";
+
+        cout << "Jumlah baju   : ";
         cin >> shirtCount;
 
-        cout << "Jumlah celana: ";
+        cout << "Jumlah celana : ";
         cin >> pantsCount;
 
-        cout << "Jumlah jaket: ";
+        cout << "Jumlah jaket  : ";
         cin >> jacketCount;
 
         LaundryOrder order = { name, shirtCount, pantsCount, jacketCount, false };
@@ -71,10 +71,10 @@ public:
 
         ofstream outFile("orders.txt", ios::app);
         if (outFile.is_open()) {
-            outFile << "Nama: " << order.customerName << endl;
-            outFile << "Jumlah baju: " << order.shirtCount << endl;
-            outFile << "Jumlah celana: " << order.pantsCount << endl;
-            outFile << "Jumlah jaket: " << order.jacketCount << endl;
+            outFile << "Nama          : " << order.customerName << endl;
+            outFile << "Jumlah baju   : " << order.shirtCount << endl;
+            outFile << "Jumlah celana : " << order.pantsCount << endl;
+            outFile << "Jumlah jaket  : " << order.jacketCount << endl;
             outFile << endl;
             outFile.close();
         } else {
@@ -90,18 +90,18 @@ public:
 
         if (orderQueue.empty()) {
             cout << "Antrean kosong." << endl;
-            return;
+            getch();
         }
 
-        cout << "Antrean Pesanan:" << endl;
+        cout << "Lihat Antrean (Max: " << queueSize << ")" << endl;
         int index = 1;
         queue<LaundryOrder> tempQueue = orderQueue;
         while (!tempQueue.empty()) {
             LaundryOrder order = tempQueue.front();
             cout << index << ". Pesanan " << order.customerName << endl;
-            cout << "   - Jumlah baju: " << order.shirtCount << endl;
-            cout << "   - Jumlah celana: " << order.pantsCount << endl;
-            cout << "   - Jumlah jaket: " << order.jacketCount << endl;
+            cout << "   - Jumlah baju   : " << order.shirtCount << endl;
+            cout << "   - Jumlah celana : " << order.pantsCount << endl;
+            cout << "   - Jumlah jaket  : " << order.jacketCount << endl;
             tempQueue.pop();
             index++;
         }
@@ -113,7 +113,8 @@ public:
     void completeOrder() {
         if (orderQueue.empty()) {
             cout << "Tidak ada pesanan." << endl;
-            return;
+            getch();
+            system("cls");
         }
 
         LaundryOrder order = orderQueue.front();
@@ -132,6 +133,8 @@ public:
     }
 
     void endDay() {      
+        system("cls");
+
         if (!orderQueue.empty()) {
         cout << "Masih ada pesanan yang belum selesai." << endl;       
         getch();
@@ -139,7 +142,7 @@ public:
         return;
         }
 
-        cout << "Sales Record Day " << day << ": " << endl;
+        cout << "\tSales Record Day " << day << endl;
         ifstream inFile("orders.txt");
         if (inFile.is_open()) {
             string line;
@@ -222,7 +225,7 @@ int main() {
         game.displayDay();
         cout << "================================" << endl;
         cout << "1. Terima Pesanan" << endl;
-        cout << "2. Lihat Antrian " << endl;
+        cout << "2. Lihat Antrean " << endl;
         cout << "3. Selesaikan Pesanan" << endl;
         cout << "4. End Day" << endl;
         cout << "5. Exit" << endl;
@@ -247,7 +250,7 @@ int main() {
                 cout << "Exiting program..." << endl;
                 break;
             default:
-                cout << "Invalid choice. Please try again." << endl;
+                cout << "Pilihan tidak valid." << endl;
                 break;
         }
 
