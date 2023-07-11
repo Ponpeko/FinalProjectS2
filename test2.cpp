@@ -39,6 +39,7 @@ public:
         srand(time(0));
     }
 
+// Dhani
     void acceptOrder() {
         string name, serviceType;
         int shirtCount, pantsCount, jacketCount;
@@ -85,6 +86,7 @@ public:
         system("cls");
     }
 
+// Ara
     void viewOrderQueue() {
         system("cls");
 
@@ -132,6 +134,7 @@ public:
         system("cls");
     }
 
+// Paundra
     void endDay() {      
         system("cls");
 
@@ -157,7 +160,7 @@ public:
         cout << endl;
         char choice;
         cout << "End Day Menu:" << endl;
-        cout << "1. Upgrade antrian (20000)" << endl;
+        cout << "1. Upgrade antrian (10000)" << endl;
         cout << "2. Next Day" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
@@ -184,8 +187,8 @@ public:
 
 private:
     void upgrade() {
-        if (coins >= 20000) {
-            coins -= 20000;
+        if (coins >= 10000) {
+            coins -= 10000;
             queueSize += 4;
             cout << "Antiran telah di upgrade. Jumlah maksimal " << queueSize << "." << endl;
         } else {
